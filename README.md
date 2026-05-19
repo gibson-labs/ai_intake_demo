@@ -106,16 +106,34 @@ Variables:
 ```text
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
+OPENAI_BASE_URL=
+OPENROUTER_API_KEY=
+OPENROUTER_SITE_URL=https://frostflow.johnmgibson.com
+OPENROUTER_APP_NAME=FrostFlow AI Intake Demo
 ZAPIER_WEBHOOK_URL=
 DATABASE_URL=sqlite:///./data/frostflow.db
 BACKEND_CORS_ORIGINS=http://localhost:5173,http://localhost:8080
 ```
 
-If `OPENAI_API_KEY` is empty, the backend uses deterministic mock analysis so the demo still works. If `ZAPIER_WEBHOOK_URL` is empty, the Zapier and Google Workspace trace steps are marked as skipped.
+If no direct OpenAI or OpenRouter key is configured, the backend uses deterministic mock analysis so the demo still works. If `ZAPIER_WEBHOOK_URL` is empty, the Zapier and Google Workspace trace steps are marked as skipped.
 
-## OpenAI Configuration
+## OpenAI or OpenRouter Configuration
 
-Set `OPENAI_API_KEY` and optionally `OPENAI_MODEL`. The backend uses the modern OpenAI Python SDK and requests structured JSON matching this schema:
+For direct OpenAI API usage, set `OPENAI_API_KEY` and optionally `OPENAI_MODEL`.
+
+For OpenRouter usage, set:
+
+```text
+OPENROUTER_API_KEY=sk-or-your-openrouter-key
+OPENAI_BASE_URL=https://openrouter.ai/api/v1
+OPENAI_MODEL=openai/gpt-4o-mini
+OPENROUTER_SITE_URL=https://frostflow.johnmgibson.com
+OPENROUTER_APP_NAME=FrostFlow AI Intake Demo
+```
+
+OpenRouter is OpenAI-compatible, so the backend still uses the modern OpenAI Python SDK while pointing it at OpenRouter's base URL. Use an OpenRouter model ID that supports structured outputs. OpenRouter documents `response_format` with `json_schema` for compatible models.
+
+The backend requests structured JSON matching this schema:
 
 ```json
 {
@@ -204,4 +222,3 @@ Add screenshots after deployment:
 ## Production Readiness
 
 This is a polished demo, not a production legal operations system. A production version would need authentication, access controls, audit logging, retention policies, encryption review, secret management, privacy review, stronger validation, monitoring, and firm-specific process approvals.
-

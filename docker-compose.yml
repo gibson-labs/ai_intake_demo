@@ -7,6 +7,10 @@ services:
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL:-https://frostflow.johnmgibson.com}
+      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME:-FrostFlow AI Intake Demo}
       ZAPIER_WEBHOOK_URL: ${ZAPIER_WEBHOOK_URL:-}
       DATABASE_URL: ${DATABASE_URL:-sqlite:///./data/frostflow.db}
       BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-http://localhost:5173,http://localhost:8080}

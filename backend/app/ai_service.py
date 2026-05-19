@@ -56,10 +56,23 @@ ANALYSIS_SCHEMA = {
 
 
 def analyze_intake(intake: IntakeCreate) -> tuple[Analysis, bool]:
-    if not os.getenv("OPENAI_API_KEY"):
+    api_key = os.getenv("OPENAI_API_KEY") or os.getenv("OPENROUTER_API_KEY")
+    if not api_key:
         return mock_analysis(intake), False
 
-    client = OpenAI()
+    base_url = os.getenv("OPENAI_BASE_URL")
+    default_headers = {}
+    if base_url and "openrouter.ai" in base_url:
+        default_headers = {
+            "HTTP-Referer": os.getenv("OPENROUTER_SITE_URL", "https://frostflow.johnmgibson.com"),
+            "X-Title": os.getenv("OPENROUTER_APP_NAME", "FrostFlow AI Intake Demo"),
+        }
+
+    client = OpenAI(
+        api_key=api_key,
+        base_url=base_url,
+        default_headers=default_headers or None,
+    )
     model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
     response = client.chat.completions.create(
         model=model,
