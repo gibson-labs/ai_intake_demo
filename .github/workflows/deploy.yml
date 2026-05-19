@@ -1,0 +1,28 @@
+name: Deploy FrostFlow AI Intake Demo
+
+on:
+  push:
+    branches: [main, dev]
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, hostinger]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build & deploy
+        run: |
+          cd "${{ github.workspace }}"
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            COMPOSE_FILE="docker-compose.yml"
+            PROJECT_NAME="frostflow"
+          else
+            COMPOSE_FILE="docker-compose.dev.yml"
+            PROJECT_NAME="frostflow-dev"
+          fi
+          docker compose -p "$PROJECT_NAME" -f "$COMPOSE_FILE" down --remove-orphans
+          docker compose -p "$PROJECT_NAME" -f "$COMPOSE_FILE" build --no-cache
+          docker compose -p "$PROJECT_NAME" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans
+

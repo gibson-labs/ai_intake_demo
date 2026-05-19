@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: frostflow-backend
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      ZAPIER_WEBHOOK_URL: ${ZAPIER_WEBHOOK_URL:-}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:///./data/frostflow.db}
+      BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-http://localhost:5173,http://localhost:8080}
+      PORT: 8000
+    volumes:
+      - frostflow-data:/app/data
+    expose:
+      - "8000"
+    restart: unless-stopped
+    networks:
+      - frostflow
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frostflow-frontend
+    depends_on:
+      - backend
+    expose:
+      - "80"
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - frostflow
+      - proxy
+
+volumes:
+  frostflow-data:
+
+networks:
+  frostflow:
+  proxy:
+    external: true
