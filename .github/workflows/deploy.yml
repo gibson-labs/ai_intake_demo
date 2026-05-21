@@ -13,6 +13,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build & deploy
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          ZAPIER_WEBHOOK_URL: ${{ secrets.ZAPIER_WEBHOOK_URL }}
+          OPENAI_BASE_URL: https://openrouter.ai/api/v1
+          OPENAI_MODEL: openai/gpt-4o-mini
+          OPENROUTER_SITE_URL: https://ai-intake.johnmgibson.com
+          OPENROUTER_APP_NAME: AI Intake Form Demo
         run: |
           cd "${{ github.workspace }}"
           if [ "${{ github.ref_name }}" = "main" ]; then
