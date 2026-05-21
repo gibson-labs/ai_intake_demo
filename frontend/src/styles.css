@@ -226,6 +226,11 @@ textarea:focus {
   margin-top: 20px;
 }
 
+.run-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 button {
   display: inline-flex;
   align-items: center;
@@ -505,4 +510,3 @@ li + li {
     padding-bottom: 48px;
   }
 }
-

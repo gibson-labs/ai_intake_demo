@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShieldCheck } from "lucide-react";
+import { RotateCcw, ShieldCheck } from "lucide-react";
 import { submitIntake } from "./api";
 import { AnalysisResult } from "./components/AnalysisResult";
 import { ArchitectureSection } from "./components/ArchitectureSection";
@@ -47,6 +47,12 @@ export default function App() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleReset() {
+    setIntake(emptyIntake);
+    setResult(null);
+    setError(null);
   }
 
   return (
@@ -103,11 +109,19 @@ export default function App() {
         {error ? <div className="error-box">{error}</div> : null}
 
         {result ? (
-          <div className="results-grid">
-            <AnalysisResult analysis={result.analysis} />
-            <PipelineTrace pipeline={result.pipeline} />
-            <StaffBrief result={result} />
-          </div>
+          <>
+            <div className="run-actions">
+              <button className="secondary" type="button" onClick={handleReset}>
+                <RotateCcw size={18} aria-hidden="true" />
+                Start New Intake
+              </button>
+            </div>
+            <div className="results-grid">
+              <AnalysisResult analysis={result.analysis} />
+              <PipelineTrace pipeline={result.pipeline} />
+              <StaffBrief result={result} />
+            </div>
+          </>
         ) : (
           <section className="empty-state">
             <h2>Run the sample intake to see the full workflow.</h2>
