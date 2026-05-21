@@ -32,7 +32,14 @@ export function IntakeForm({
   };
 
   return (
-    <section className="panel form-panel" aria-labelledby="intake-heading">
+    <form
+      className="panel form-panel"
+      aria-labelledby="intake-heading"
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmit();
+      }}
+    >
       <div className="section-title">
         <ClipboardList size={22} aria-hidden="true" />
         <div>
@@ -43,35 +50,42 @@ export function IntakeForm({
 
       <div className="form-grid">
         <label>
-          Full name
+          Full name *
           <input
             value={value.full_name}
             onChange={(event) => update("full_name", event.target.value)}
             placeholder="Jane Example"
+            required
+            minLength={2}
           />
         </label>
         <label>
-          Email
+          Email *
           <input
             type="email"
             value={value.email}
             onChange={(event) => update("email", event.target.value)}
             placeholder="jane@example.com"
+            required
           />
         </label>
         <label>
-          Phone
+          Phone *
           <input
+            type="tel"
             value={value.phone}
             onChange={(event) => update("phone", event.target.value)}
             placeholder="801-555-0198"
+            required
+            minLength={7}
           />
         </label>
         <label>
-          What do you need help with?
+          What do you need help with? *
           <select
             value={value.practice_area_guess}
             onChange={(event) => update("practice_area_guess", event.target.value)}
+            required
           >
             {practiceAreas.map((area) => (
               <option key={area.value} value={area.value}>
@@ -83,12 +97,14 @@ export function IntakeForm({
       </div>
 
       <label>
-        Description of issue
+        Description of issue *
         <textarea
           value={value.description}
           onChange={(event) => update("description", event.target.value)}
           rows={6}
           placeholder="Describe the intake in the client’s own words."
+          required
+          minLength={20}
         />
       </label>
 
@@ -116,11 +132,11 @@ export function IntakeForm({
           <Wand2 size={18} aria-hidden="true" />
           Load Sample Intake
         </button>
-        <button type="button" onClick={onSubmit} disabled={loading}>
+        <button type="submit" disabled={loading}>
           <Play size={18} aria-hidden="true" />
           {loading ? "Analyzing..." : "Analyze Intake"}
         </button>
       </div>
-    </section>
+    </form>
   );
 }

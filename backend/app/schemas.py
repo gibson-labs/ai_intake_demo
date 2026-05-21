@@ -17,13 +17,13 @@ PipelineStatus = Literal["pending", "success", "skipped", "error"]
 
 
 class IntakeCreate(BaseModel):
-    full_name: str = Field(..., min_length=2, max_length=120)
+    full_name: str = Field(..., min_length=2)
     email: EmailStr
-    phone: str = Field(..., min_length=7, max_length=40)
+    phone: str = Field(..., min_length=7)
     practice_area_guess: PracticeArea
-    description: str = Field(..., min_length=20, max_length=5000)
-    deadline: Optional[str] = Field(default=None, max_length=120)
-    notes: Optional[str] = Field(default=None, max_length=2000)
+    description: str = Field(..., min_length=20)
+    deadline: Optional[str] = None
+    notes: Optional[str] = None
 
 
 class Intake(IntakeCreate):
