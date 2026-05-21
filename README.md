@@ -163,7 +163,7 @@ Create a Zap with a Webhooks by Zapier trigger:
    - Create Google Docs brief
    - Send Gmail notification to intake staff
 
-The webhook payload includes `run_id`, `timestamp`, `intake`, and `analysis`.
+The webhook payload includes `run_id`, `timestamp`, `intake`, and `analysis`. It also includes flat staff-routing fields such as `client_name`, `ai_practice_area`, `urgency`, and `summary` so no-code tools can map common Google Sheets and Gmail values without parsing nested JSON first.
 
 ## Docker Compose
 

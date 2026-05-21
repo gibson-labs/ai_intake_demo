@@ -70,6 +70,18 @@ async def create_intake(intake: IntakeCreate) -> dict[str, Any]:
     payload = {
         "run_id": run_id,
         "timestamp": utc_now_iso(),
+        "client_name": intake.full_name,
+        "client_email": intake.email,
+        "client_phone": intake.phone,
+        "client_selected_category": intake.practice_area_guess,
+        "ai_practice_area": analysis.practice_area,
+        "urgency": analysis.urgency,
+        "summary": analysis.summary,
+        "key_facts": "\n".join(analysis.key_facts),
+        "missing_information": "\n".join(analysis.missing_information),
+        "recommended_next_step": analysis.recommended_next_step,
+        "follow_up_questions": "\n".join(analysis.follow_up_questions),
+        "risk_notes": "\n".join(analysis.risk_notes),
         "intake": intake.model_dump(),
         "analysis": analysis.model_dump(),
     }
