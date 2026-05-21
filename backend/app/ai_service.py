@@ -64,8 +64,8 @@ def analyze_intake(intake: IntakeCreate) -> tuple[Analysis, bool]:
     default_headers = {}
     if base_url and "openrouter.ai" in base_url:
         default_headers = {
-            "HTTP-Referer": os.getenv("OPENROUTER_SITE_URL", "https://frostflow.johnmgibson.com"),
-            "X-Title": os.getenv("OPENROUTER_APP_NAME", "FrostFlow AI Intake Demo"),
+            "HTTP-Referer": os.getenv("OPENROUTER_SITE_URL", "https://ai-intake.johnmgibson.com"),
+            "X-Title": os.getenv("OPENROUTER_APP_NAME", "AI Intake Form Demo"),
         }
 
     client = OpenAI(

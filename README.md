@@ -1,6 +1,6 @@
-# FrostFlow AI Intake Demo
+# AI Intake Form Demo
 
-FrostFlow AI Intake Demo is a small workflow automation project that turns messy legal/tax intake submissions into structured internal staff briefs using React, Python, OpenAI structured output, SQLite, and an optional Zapier webhook.
+AI Intake Form Demo is a small workflow automation project that turns messy legal/tax intake submissions into structured internal staff briefs using React, Python, OpenAI structured output, SQLite, and an optional Zapier webhook.
 
 This demo was built to show how AI and automation can support internal legal operations without replacing professional judgment. It focuses on intake triage, summarization, missing-information detection, and workflow routing.
 
@@ -108,8 +108,8 @@ OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 OPENAI_BASE_URL=
 OPENROUTER_API_KEY=
-OPENROUTER_SITE_URL=https://frostflow.johnmgibson.com
-OPENROUTER_APP_NAME=FrostFlow AI Intake Demo
+OPENROUTER_SITE_URL=https://ai-intake.johnmgibson.com
+OPENROUTER_APP_NAME=AI Intake Form Demo
 ZAPIER_WEBHOOK_URL=
 DATABASE_URL=sqlite:///./data/frostflow.db
 BACKEND_CORS_ORIGINS=http://localhost:5173,http://localhost:8080
@@ -127,8 +127,8 @@ For OpenRouter usage, set:
 OPENROUTER_API_KEY=sk-or-your-openrouter-key
 OPENAI_BASE_URL=https://openrouter.ai/api/v1
 OPENAI_MODEL=openai/gpt-4o-mini
-OPENROUTER_SITE_URL=https://frostflow.johnmgibson.com
-OPENROUTER_APP_NAME=FrostFlow AI Intake Demo
+OPENROUTER_SITE_URL=https://ai-intake.johnmgibson.com
+OPENROUTER_APP_NAME=AI Intake Form Demo
 ```
 
 OpenRouter is OpenAI-compatible, so the backend still uses the modern OpenAI Python SDK while pointing it at OpenRouter's base URL. Use an OpenRouter model ID that supports structured outputs. OpenRouter documents `response_format` with `json_schema` for compatible models.
@@ -198,7 +198,7 @@ docker network create proxy
 Then point Nginx Proxy Manager or Cloudflare tunnel routing at the frontend container/service port. A typical public subdomain would be:
 
 ```text
-frostflow.johnmgibson.com
+ai-intake.johnmgibson.com
 ```
 
 ## Screenshots

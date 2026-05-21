@@ -1,4 +1,4 @@
-name: Deploy FrostFlow AI Intake Demo
+name: Deploy AI Intake Form Demo
 
 on:
   push:
@@ -25,4 +25,3 @@ jobs:
           docker compose -p "$PROJECT_NAME" -f "$COMPOSE_FILE" down --remove-orphans
           docker compose -p "$PROJECT_NAME" -f "$COMPOSE_FILE" build --no-cache
           docker compose -p "$PROJECT_NAME" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans
-

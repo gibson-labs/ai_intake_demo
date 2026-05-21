@@ -27,7 +27,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(
-    title="FrostFlow AI Intake Demo API",
+    title="AI Intake Form Demo API",
     description="Internal intake triage demo. This API does not provide legal advice.",
     version="1.0.0",
     lifespan=lifespan,

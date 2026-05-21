@@ -53,12 +53,12 @@ export default function App() {
     <main>
       <header className="hero">
         <nav>
-          <span className="brand">FrostFlow</span>
+          <span className="brand">AI Intake Form Demo</span>
           <span className="nav-note">AI intake workflow demo</span>
         </nav>
         <div className="hero-content">
           <p className="eyebrow">AI Solutions Engineer demo project</p>
-          <h1>FrostFlow AI Intake Demo</h1>
+          <h1>AI Intake Form Demo</h1>
           <p>
             A practical AI workflow demo that turns messy client intake submissions into structured
             internal staff briefs using Python, OpenAI, Zapier, and Google Workspace-style
@@ -123,4 +123,3 @@ export default function App() {
     </main>
   );
 }
-
