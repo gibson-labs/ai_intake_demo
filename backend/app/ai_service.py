@@ -115,7 +115,7 @@ def mock_analysis(intake: IntakeCreate) -> Analysis:
             "legal or tax assessment."
         ),
         key_facts=[
-            f"Client selected practice area guess: {intake.practice_area_guess}.",
+            f"Client selected intake category: {intake.practice_area_guess}.",
             f"Client description: {intake.description}",
             f"Important date or deadline provided: {deadline_text}",
         ],

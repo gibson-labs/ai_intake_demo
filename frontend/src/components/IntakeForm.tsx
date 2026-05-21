@@ -1,12 +1,12 @@
 import { ClipboardList, Play, Wand2 } from "lucide-react";
 import type { IntakePayload, PracticeArea } from "../types";
 
-const practiceAreas: PracticeArea[] = [
-  "Tax Controversy",
-  "Tax Planning",
-  "Estate Planning",
-  "Business Law",
-  "Unsure"
+const practiceAreas: { label: string; value: PracticeArea }[] = [
+  { label: "Tax notice, audit, collection, or IRS issue", value: "Tax Controversy" },
+  { label: "Tax planning question", value: "Tax Planning" },
+  { label: "Estate plan, will, or trust question", value: "Estate Planning" },
+  { label: "Business legal question", value: "Business Law" },
+  { label: "I am not sure yet", value: "Unsure" }
 ];
 
 interface IntakeFormProps {
@@ -68,14 +68,14 @@ export function IntakeForm({
           />
         </label>
         <label>
-          Practice area guess
+          What do you need help with?
           <select
             value={value.practice_area_guess}
             onChange={(event) => update("practice_area_guess", event.target.value)}
           >
             {practiceAreas.map((area) => (
-              <option key={area} value={area}>
-                {area}
+              <option key={area.value} value={area.value}>
+                {area.label}
               </option>
             ))}
           </select>
@@ -124,4 +124,3 @@ export function IntakeForm({
     </section>
   );
 }
-
