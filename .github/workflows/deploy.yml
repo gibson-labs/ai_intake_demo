@@ -22,6 +22,14 @@ jobs:
           OPENROUTER_APP_NAME: AI Intake Form Demo
         run: |
           cd "${{ github.workspace }}"
+          if [ -z "$OPENROUTER_API_KEY" ]; then
+            echo "OPENROUTER_API_KEY is missing from GitHub Actions secrets."
+            exit 1
+          fi
+          if [ -z "$ZAPIER_WEBHOOK_URL" ]; then
+            echo "ZAPIER_WEBHOOK_URL is missing from GitHub Actions secrets."
+            exit 1
+          fi
           if [ "${{ github.ref_name }}" = "main" ]; then
             COMPOSE_FILE="docker-compose.yml"
             PROJECT_NAME="frostflow"
